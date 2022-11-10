@@ -3,7 +3,7 @@ import { Context } from "../context/customContext";
 import swal from 'sweetalert';
 
 const Cart = () => {
-    const { cart, total, clearCart } = useContext(Context);
+    const { cart, total, clearCart, removeProduct } = useContext(Context);
 
     const styles = {
         container: {
@@ -76,6 +76,16 @@ const Cart = () => {
             borderRadius: "0.5em",
             color: "#ffffff",
             cursor: "pointer",
+        },
+        removeBtn: {
+            backgroundColor: "#000000",
+            padding: "0.6em",
+            maxWidth: "10em",
+            fontSize: "0.8em",
+            border: "none",
+            borderRadius: "0.5em",
+            color: "#ffffff",
+            cursor: "pointer",
         }
     }
 
@@ -99,11 +109,12 @@ const Cart = () => {
                 </thead>
                 <tbody>
                     {cart.map(product => (
-                        <tr style={styles.trBody}>
+                        <tr key={product.id} style={styles.trBody}>
                             <td><img style={styles.image} src={product.image} alt="" /></td>
                             <td style={styles.td}>
                                 <h2 style={styles.title}>{product.title}</h2>
                                 <p style={styles.price}>${product.price} | Cantidad: {product.cantidad}</p>
+                                <button style={styles.removeBtn} onClick={()=> removeProduct(product.id)}>Quitar producto</button>
                                 <p style={styles.p}>{product.description}</p>
                             </td>
                         </tr>

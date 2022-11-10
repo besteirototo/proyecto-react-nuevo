@@ -10,7 +10,8 @@ const Item = ({ product }) => {
             justifyContent: "center",
             borderRadius: "0.5em",
             alignItems: "center",
-            maxWidth: "12em",
+            maxWidth: "11em",
+            maxHeight: "27em",
             margin: "0.5em"
         },
         image: {

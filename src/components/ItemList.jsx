@@ -6,9 +6,9 @@ const ItemList = ({products}) => {
         container: {
             display: "flex",
             justifyContent: "space-between",
+            padding: "3em 10em",
             alignItems: "center",
             flexWrap: "wrap",
-            padding: "3em",
             backgroundColor: "#d6d6d6"
         }
     }
