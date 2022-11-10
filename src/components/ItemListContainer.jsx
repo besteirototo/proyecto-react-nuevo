@@ -2,7 +2,8 @@ import ItemList from './ItemList';
 import { useEffect, useState } from 'react';
 import ClipLoader from "react-spinners/ClipLoader";
 import { useParams } from 'react-router-dom';
-import { getDocs, collection, query, where, getFirestore } from "firebase/firestore";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from '../firebase/firebase';
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
@@ -10,23 +11,14 @@ const ItemListContainer = () => {
 
     const { id } = useParams();
 
-    const productsDatabase = getFirestore();
-    const productsCollection = collection(productsDatabase, 'products');
+    const productsCollection = collection(db, 'products');
     const productsCollectionCategory = query(productsCollection, where('category', '==', id ))
 
     useEffect(() => {
-        if (id) {
-            getDocs(productsCollectionCategory)
-            .then(res => setProducts(res.docs.map(product => ({ id: product.id, ...product.data() }))))
-            .catch(err => console.log(err))
-            .finally(() => setLoading(false));
-        }
-        else {
-            getDocs(productsCollection)
-            .then(res => setProducts(res.docs.map(product => ({ id: product.id, ...product.data() }))))
-            .catch(err => console.log(err))
-            .finally(() => setLoading(false));
-        }
+        getDocs(id ? productsCollectionCategory : productsCollection)
+        .then(res => { setProducts(res.docs.map(item => { return { ...item.data(), id: item.id } }))})
+        .catch(err => console.log(err))
+        .finally(() => setLoading(false))
     }, [id]);
 
     return ( 
