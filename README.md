@@ -12,7 +12,7 @@ La App esta viculada a Firebase, que es utilizada como base de datos.
 ![](https://firebasestorage.googleapis.com/v0/b/react-17563.appspot.com/o/2022-11-10%20(1).png?alt=media&token=42914019-bbe5-44ed-89ae-2e162ffdfee0)
 
 ## Puede acceder al sitio desde:
-https://tiendacell.netlify.app/
+https://saetadefuegoeditorial.netlify.app/
 
 ## Herramientas y/o dependecias utilizadas:
 * React 18.2.0
